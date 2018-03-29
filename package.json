@@ -1,20 +1,27 @@
 {
-  "name": "mvc_design",
+  "name": "14-full-stack-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "eat da burger",
   "main": "server.js",
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattGohr/full-stack-app.git"
+  },
+  "keywords": [
+    "eat",
+    "da",
+    "burger"
+  ],
+  "author": "matt gohr",
   "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.14.2",
-    "express": "^4.13.3",
-    "express-handlebars": "^2.0.1",
-    "mysql": "^2.10.2"
+  "bugs": {
+    "url": "https://github.com/MattGohr/full-stack-app/issues"
   },
-  "devDependencies": {
-    "handlebars-helper-css": "^0.1.0"
-  }
+  "homepage": "https://github.com/MattGohr/full-stack-app#readme"
 }
