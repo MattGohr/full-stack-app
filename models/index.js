@@ -5,7 +5,6 @@ var path      = require('path');
 var Sequelize = require('sequelize');
 var basename  = path.basename(module.filename);
 var env       = process.env.NODE_ENV || 'development';
-// var config    = require(__dirname + '/../config/config.js');
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
@@ -18,18 +17,9 @@ if (process.env.NODE_ENV === "production") {
     password: process.env.PASSWORD,
     dialect: "mysql"
   });
-  console.log("using id");
-
 } else {
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
-  console.log("using else");
-
 }
-
-console.log(process.env.DB_HOST);
-console.log(process.env.DB);
-console.log(process.env.USERNAME);
-
 
 fs
   .readdirSync(__dirname)
