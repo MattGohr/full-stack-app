@@ -6,7 +6,6 @@ module.exports = function(app) {
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Post
     db.Burger.findAll({
-      include: [db.Post]
     }).then(function(dbBurger) {
       res.json(dbBurger);
     });
