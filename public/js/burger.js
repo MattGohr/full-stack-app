@@ -2,7 +2,7 @@ $(document).ready(function () {
   // Getting references to the name inout and author container, as well as the table body
   var burgerInput = $("#burger-input");
   var authorList = $("tbody");
-  var authorContainer = $(".author-container");
+  var uneatenContainer = $("#uneaten");
   // Adding event listeners to the form to create a new object, and the button to delete
   // an Burger
   $(document).on("submit", "#burger-form", handleBurgerFormSubmit);
@@ -33,20 +33,20 @@ $(document).ready(function () {
     
     $.post("/api/burgers", burgerData)
       .then(function(){
-        getBurgers;
+        getBurgers();
         $("#burger-input").val("")
 
       });
   }
 
   // Function for creating a new list row for authors
-  function createBurgerRow(burgerData) {
+  function createBurgerRow(burgerData, id) {
     var newTr = $("<tr>");
     newTr.data("author", burgerData);
-    newTr.append("<td>" + burgerData.name + "</td>");
-    newTr.append("<td> " + burgerData.Posts.length + "</td>");
-    newTr.append("<td><a href='/blog?author_id=" + burgerData.id + "'>Go to Posts</a></td>");
-    newTr.append("<td><a href='/cms?author_id=" + burgerData.id + "'>Create a Post</a></td>");
+    newTr.append("<td>" + id + "</td>");
+    newTr.append("<td>" + burgerData.burger_name + "</td>");
+    newTr.append("<td><a href='/blog?author_id=" + id + "'>Go to Posts</a></td>");
+    newTr.append("<td><a href='/cms?author_id=" + id + "'>Create a Post</a></td>");
     newTr.append("<td><a style='cursor:pointer;color:red' class='delete-author'>Delete Burger</a></td>");
     return newTr;
   }
@@ -56,8 +56,10 @@ $(document).ready(function () {
     $.get("/api/burgers", function (data) {
       var rowsToAdd = [];
       for (var i = 0; i < data.length; i++) {
-        rowsToAdd.push(createBurgerRow(data[i]));
+        rowsToAdd.push(createBurgerRow(data[i], i));
+        console.log(data[i]);        
       }
+      console.log(rowsToAdd);      
       renderBurgerList(rowsToAdd);
       burgerInput.val("");
     });
@@ -66,7 +68,7 @@ $(document).ready(function () {
   // A function for rendering the list of authors to the page
   function renderBurgerList(rows) {
     authorList.children().not(":last").remove();
-    authorContainer.children(".alert").remove();
+    uneatenContainer.children(".alert").remove();
     if (rows.length) {
       console.log(rows);
       authorList.prepend(rows);
@@ -80,7 +82,7 @@ $(document).ready(function () {
     var alertDiv = $("<div>");
     alertDiv.addClass("alert alert-danger");
     alertDiv.text("You must create an Burger before you can create a Post.");
-    authorContainer.append(alertDiv);
+    uneatenContainer.append(alertDiv);
   }
 
   // Function for handling what happens when the delete button is pressed
