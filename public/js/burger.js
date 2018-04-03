@@ -64,7 +64,7 @@ $(document).ready(function () {
       burgerInput.val("");
     });
   }
-
+ 
   // A function for rendering the list of authors to the page
   function renderBurgerList(rows) {
     authorList.children().not(":last").remove();
