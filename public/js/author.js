@@ -27,26 +27,26 @@ $(document).ready(function() {
   }
 
   // A function for creating an author. Calls getAuthors upon completion
-  function upsertAuthor(authorData) {
-    $.post("/api/authors", authorData)
+  function upsertAuthor(burgerData) {
+    $.post("/api/burgers", burgerData)
       .then(getAuthors);
   }
 
   // Function for creating a new list row for authors
-  function createAuthorRow(authorData) {
+  function createAuthorRow(burgerData) {
     var newTr = $("<tr>");
-    newTr.data("author", authorData);
-    newTr.append("<td>" + authorData.name + "</td>");
-    newTr.append("<td> " + authorData.Posts.length + "</td>");
-    newTr.append("<td><a href='/blog?author_id=" + authorData.id + "'>Go to Posts</a></td>");
-    newTr.append("<td><a href='/cms?author_id=" + authorData.id + "'>Create a Post</a></td>");
+    newTr.data("author", burgerData);
+    newTr.append("<td>" + burgerData.name + "</td>");
+    newTr.append("<td> " + burgerData.Posts.length + "</td>");
+    newTr.append("<td><a href='/blog?author_id=" + burgerData.id + "'>Go to Posts</a></td>");
+    newTr.append("<td><a href='/cms?author_id=" + burgerData.id + "'>Create a Post</a></td>");
     newTr.append("<td><a style='cursor:pointer;color:red' class='delete-author'>Delete Author</a></td>");
     return newTr;
   }
 
   // Function for retrieving authors and getting them ready to be rendered to the page
   function getAuthors() {
-    $.get("/api/authors", function(data) {
+    $.get("/api/burgers", function(data) {
       var rowsToAdd = [];
       for (var i = 0; i < data.length; i++) {
         rowsToAdd.push(createAuthorRow(data[i]));
