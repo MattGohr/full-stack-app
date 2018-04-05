@@ -45,7 +45,7 @@ module.exports = function(app) {
   }); 
 
   app.put("/api/burgers/:id", function(req, res) {
-    db.Burger.destroy({
+    db.Burger.update({
       where: {
         id: req.params.id
       }
