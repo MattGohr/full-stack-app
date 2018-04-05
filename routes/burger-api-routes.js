@@ -42,6 +42,16 @@ module.exports = function(app) {
     }).then(function(dbBurger) {
       res.json(dbBurger);
     });
+  }); 
+
+  app.put("/api/burgers/:id", function(req, res) {
+    db.Burger.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbBurger) {
+      res.json(dbBurger);
+    });
   });
 
 };
