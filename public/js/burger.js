@@ -91,7 +91,8 @@ $(document).ready(function () {
     console.log(listItemData);
     
     var burgerState = {
-      devoured: true
+      devoured: true,
+      id: id
     }
 
     $.ajax({
